@@ -1,0 +1,1 @@
+/nix/store/1ln6bvfs9xbscpr3zn8b847yqx45k1qc-postgresql-11.4/bin/postgres "-D" "/home/toraritte/clones/assessments/.nix-shell/db"
