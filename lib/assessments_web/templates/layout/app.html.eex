@@ -4,27 +4,57 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Assessments · Phoenix Framework</title>
+    <title>
+      <%# See TODO 2019-08-12_0710 Per route page titles %>
+      <%# <%= @view_module.title(@view_template, assigns) %1> %>
+      - CORE Assessments
+    </title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
+    <%# TODO: %>
+    <%# Render the  header and nav  side by side  (header to %>
+    <%# the left, nav to the right) %>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
-        </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
+      <h1>CORE Assessments</h1>
+      <p>Manage new client assessments and generate documents to DOR.</p>
     </header>
+
+    <%= case AssessmentsWeb.Auth.signed_in?(@conn) do %>
+      <%= true  -> %>
+        <nav>
+          <ol>
+            <li class="nav_li">
+
+              <%# TODO: %>
+              <%# Make it a link to the user profile (which doesn't %>
+              <%# exist yet). %>
+
+              <%= username(@conn) %>
+            </li>
+            <li class="nav_li">
+                  <%= button("Logout", to: "/sessions", method: "delete") %>
+            </li>
+            <li class="nav_li">
+              <%# TODO 2019-08-13_1100 %>
+              <%= button("Admin Tools", to: "/admin", method: "get", disabled: !is_admin?(@conn)) %>
+            </li>
+          </ol>
+        </nav>
+      <%= false -> %>
+        <%= "" %>
+    <% end %>
+
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
+    <footer>
+
+      <%# TODO: contact info, license, project source link etc. %>
+
+    </footer>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
