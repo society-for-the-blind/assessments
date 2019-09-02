@@ -1,5 +1,0 @@
-2019-09-01 15:04:31.794 UTC [20553] LOG:  listening on IPv6 address "::1", port 5433
-2019-09-01 15:04:31.794 UTC [20553] LOG:  listening on IPv4 address "127.0.0.1", port 5433
-2019-09-01 15:04:31.877 UTC [20553] LOG:  listening on Unix socket "/home/toraritte/clones/assessments/.nix-shell/db/.s.PGSQL.5433"
-2019-09-01 15:04:32.020 UTC [20554] LOG:  database system was shut down at 2019-09-01 15:04:29 UTC
-2019-09-01 15:04:32.056 UTC [20553] LOG:  database system is ready to accept connections

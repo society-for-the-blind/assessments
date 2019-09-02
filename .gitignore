@@ -32,3 +32,7 @@ npm-debug.log
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
+
+# Directory where  `shell.nix`  installs Mix,  Hex,
+# PostgreSQL, etc. to create a dev environment
+.nix-shell/
