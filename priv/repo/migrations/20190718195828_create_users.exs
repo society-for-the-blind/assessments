@@ -1,39 +1,27 @@
 defmodule Assessments.Repo.Migrations.CreateUsers do
+
   use Ecto.Migration
+  alias Assessments.Repo.MigrationHelpers
 
-  @type_name "role"
-  @table_name :users
+  @type_name :role
 
-  def up do
+  def change do
 
-    execute(
-      """
-      CREATE TYPE #{@type_name}
-        AS ENUM (#{sql_string()})
-      """
+    MigrationHelpers.make_enum_type(
+      Assessments.Accounts.User,
+      @type_name
     )
 
-    create table(@table_name, primary_key: false) do
+    create table(:users, primary_key: false) do
 
       add :id, :uuid, primary_key: true
 
-      add :username, :string,          null: false
-      add :role,     :"#{@type_name}", null: false
+      add :username, :string,    null: false
+      add :role,     @type_name, null: false
 
       timestamps()
     end
 
     create unique_index(:users, [:username])
-  end
-
-  def down do
-    drop table(@table_name)
-    execute("DROP TYPE #{@type_name}")
-  end
-
-  defp sql_string() do
-    Assessments.Accounts.User.roles()
-    |> Enum.map(fn role -> "'#{role}'" end)
-    |> Enum.join(",")
   end
 end

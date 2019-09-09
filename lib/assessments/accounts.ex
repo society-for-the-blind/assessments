@@ -8,7 +8,7 @@ defmodule Assessments.Accounts do
   alias Assessments.Accounts.User
   alias Assessments.Repo
 
-  @user_roles User.roles()
+  @user_roles User.role_values()
 
   def list_users do
     Repo.all(User)

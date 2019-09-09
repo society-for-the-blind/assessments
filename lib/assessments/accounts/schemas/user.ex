@@ -6,10 +6,10 @@ defmodule Assessments.Accounts.User do
   alias Assessments.Accounts.{
     Credential,
     # DataSource,
+    Assessment,
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  # @foreign_key_type :binary_id
 
   schema "users" do
 
@@ -18,6 +18,18 @@ defmodule Assessments.Accounts.User do
 
     # has_many :data_sources, DataSource
     has_one :credential, Credential
+
+    has_many(
+      :own_assessments,
+      Assessment,
+      foreign_key: :created_by
+    )
+
+    has_many(
+      :assigned_assessments,
+      Assessment,
+      foreign_key: :assigned_to
+    )
 
     timestamps()
   end
@@ -39,13 +51,13 @@ defmodule Assessments.Accounts.User do
     |> validate_length(:username, max: 27)
     |> unique_constraint(:username)
 
-    |> validate_inclusion( :role, roles())
+    |> validate_inclusion( :role, role_values())
 
     |> cast_assoc(:credential, required: true)
     # |> cast_assoc(:data_sources)
   end
 
-  def roles() do
+  def role_values() do
     ~w(admin instructor)
   end
 end
