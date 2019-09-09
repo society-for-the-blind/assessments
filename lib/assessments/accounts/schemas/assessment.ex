@@ -21,14 +21,16 @@ defmodule Assessments.Accounts.Assessment do
     # derived from latest AssessmentEvent at one point
     # field :status, :string
 
+    # https://elixirforum.com/t/belongs-to-multiple-foreign-keys/8127
+    # https://stackoverflow.com/questions/43812738/elixir-ecto-multiple-belongs-to-relationship-in-a-schema
     belongs_to(
-      :creator,
+      :creator, # assoc name
       Assessments.Accounts.User,
       foreign_key: :created_by
     )
 
     belongs_to(
-      :assignee,
+      :assignee, # assoc name
       Assessments.Accounts.User,
       foreign_key: :assigned_to
     )

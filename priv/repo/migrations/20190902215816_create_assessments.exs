@@ -37,6 +37,8 @@ defmodule Assessments.Repo.Migrations.CreateAssessments do
 
       #has_many assessment_event
 
+      # proof that this should work:
+      # https://stackoverflow.com/questions/7815018/postgres-two-foreign-keys-to-same-primary-key-field
       add(
         :created_by,
         references(
