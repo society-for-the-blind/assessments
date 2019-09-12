@@ -5,7 +5,7 @@ defmodule Assessments.Accounts.Assessment do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  # needed for `belongs_to/3`
+  # needed for the two `belongs_to/3`s
   @foreign_key_type :binary_id
 
   schema "assessments" do
@@ -13,9 +13,11 @@ defmodule Assessments.Accounts.Assessment do
     field :client_name,          :string
     field :eye_condition,        :string
     field :assessment_date,      :date
+    field :authorization_number, :string
+
+    # TODO these should be `has_one`
     field :referring_agency,     :string
     field :counselor,            :string
-    field :authorization_number, :string
 
     field :type,   :string
     # derived from latest AssessmentEvent at one point
@@ -49,5 +51,34 @@ defmodule Assessments.Accounts.Assessment do
 
   def assessment_type_values() do
     ~w(ILS Braille AT O&M)
+  end
+
+  def changeset(
+    %__MODULE__{} = assessment,
+    %{} = attrs
+  ) do
+
+    required_fields =
+      [
+        :client_name,
+        :type,
+      ]
+
+    fields =
+      [
+        :eye_condition,
+        :assessment_date,
+        :referring_agency,
+        :counselor,
+        :authorization_number,
+      ]
+      ++ required_fields
+
+    assessment
+    |> cast(attrs, fields)
+    |> validate_required(required_fields)
+    # 1. not validating auth_number format yet
+    # 2. is there a point of using `unique_constraint/3`?
+    |> validate_inclusion(:type, assessment_type_values())
   end
 end

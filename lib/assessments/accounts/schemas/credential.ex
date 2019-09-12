@@ -5,9 +5,6 @@ defmodule Assessments.Accounts.Credential do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  # needed for `belongs_to/3`
-  @foreign_key_type :binary_id
-
   schema "credentials" do
 
     field :password,        :string,  virtual: true
@@ -15,7 +12,11 @@ defmodule Assessments.Accounts.Credential do
     field :password_length, :integer, virtual: true
     field :password_hash,   :string
 
-    belongs_to :user, Assessments.Accounts.User
+    belongs_to(
+      :user,
+      Assessments.Accounts.User,
+      type: :binary_id
+    )
 
     timestamps()
   end
