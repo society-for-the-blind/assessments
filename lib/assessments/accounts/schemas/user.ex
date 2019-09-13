@@ -3,10 +3,10 @@ defmodule Assessments.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Assessments.Assessment
   alias Assessments.Accounts.{
     Credential,
     # DataSource,
-    Assessment,
   }
 
   @primary_key {:id, :binary_id, autogenerate: true}

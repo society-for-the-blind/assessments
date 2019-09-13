@@ -16,7 +16,7 @@ defmodule Assessments.Repo.Migrations.CreateAssessments do
         # @assessment_status,
       ],
       &MigrationHelpers.make_enum_type(
-        Assessments.Accounts.Assessment,
+        Assessments.Assessment,
         &1
       )
     )

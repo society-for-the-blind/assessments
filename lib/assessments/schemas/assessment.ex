@@ -1,4 +1,4 @@
-defmodule Assessments.Accounts.Assessment do
+defmodule Assessments.Assessment do
 
   use Ecto.Schema
   import Ecto.Changeset
