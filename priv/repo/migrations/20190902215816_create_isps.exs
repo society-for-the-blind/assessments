@@ -1,4 +1,4 @@
-defmodule Assessments.Repo.Migrations.CreateAssessments do
+defmodule Assessments.Repo.Migrations.CreateISPs do
 
   use Ecto.Migration
   alias Assessments.Repo.MigrationHelpers
@@ -16,7 +16,7 @@ defmodule Assessments.Repo.Migrations.CreateAssessments do
         # @assessment_status,
       ],
       &MigrationHelpers.make_enum_type(
-        Assessments.Assessment,
+        Assessments.ISPs.ISP,
         &1
       )
     )

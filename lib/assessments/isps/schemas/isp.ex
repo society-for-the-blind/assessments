@@ -1,4 +1,4 @@
-defmodule Assessments.Assessment do
+defmodule Assessments.ISPs.ISP do
 
   use Ecto.Schema
   import Ecto.Changeset

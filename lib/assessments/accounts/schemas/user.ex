@@ -3,7 +3,7 @@ defmodule Assessments.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Assessments.Assessment
+  alias Assessments.ISP
   alias Assessments.Accounts.{
     Credential,
     # DataSource,
@@ -21,13 +21,13 @@ defmodule Assessments.Accounts.User do
 
     has_many(
       :own_assessments,
-      Assessment,
+      ISP,
       foreign_key: :created_by
     )
 
     has_many(
       :assigned_assessments,
-      Assessment,
+      ISP,
       foreign_key: :assigned_to
     )
 
