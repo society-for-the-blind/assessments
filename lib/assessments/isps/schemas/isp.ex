@@ -10,6 +10,7 @@ defmodule Assessments.ISPs.ISP do
 
   schema "assessments" do
 
+    # -- HEADER ------------------------
     field :client_name,          :string
     field :eye_condition,        :string
     field :assessment_date,      :date
@@ -18,6 +19,13 @@ defmodule Assessments.ISPs.ISP do
     # TODO these should be `has_one`
     field :referring_agency,     :string
     field :counselor,            :string
+
+    belongs_to(
+      :assignee, # assoc name
+      Assessments.Accounts.User,
+      foreign_key: :assigned_to
+    )
+    # ----------------------------------
 
     field :type,   :string
     # derived from latest AssessmentEvent at one point
@@ -29,12 +37,6 @@ defmodule Assessments.ISPs.ISP do
       :creator, # assoc name
       Assessments.Accounts.User,
       foreign_key: :created_by
-    )
-
-    belongs_to(
-      :assignee, # assoc name
-      Assessments.Accounts.User,
-      foreign_key: :assigned_to
     )
 
     timestamps()

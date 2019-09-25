@@ -1,0 +1,22 @@
+{
+  "header": {
+    "client_name":          "Client's Name",
+    "eye_condition":        "Eye Condition",
+    "assessment_date":      "Date",
+    "referring_agency":     "Referring Agency",
+    "counselor":            "Counselor",
+    "authorization_number": "Authorization Number",
+    "instructor":           "Instructor's Name"
+  },
+  "main_section_titles": {
+    "observation": "Instructor's Observation",
+    "recommendation": "Instructor's Recommendation"
+  },
+  "footer": {
+    "instructor": "Instructor's Name",
+    "title": "Title",
+    "agency": "Agency",
+    "phone": "Phone Number",
+    "email": "Email"
+  }
+}
